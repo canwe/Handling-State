@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<warehouse>
+  <stock>
+    <symbol>PIPE</symbol>
+    <name>Smoking pipe</name>
+    <price>10.90</price>
+    <quantity>10</quantity>
+  </stock>
+  <stock>
+    <symbol>VIO</symbol>
+    <name>Violin</name>
+    <price>99.99</price>
+    <quantity>5</quantity>
+  </stock>
+</warehouse>

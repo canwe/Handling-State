@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StateChart id="NotificationWorkflowTest">
+    <State id="Initial1" title="Initial1" initial="true" onEnterHandler="" onExitHandler="">
+        <Transition id="ToFinal1" title="To Final1" targetState="Final1">
+            <Notifications>
+                <Notification templateId="Notify1">
+                    <To>
+                        <Recipient role="Role1"/>
+                        <Recipient address="address1@mail.ru"/>
+                    </To>
+                    <Cc>
+                        <Recipient role="Role2"/>
+                        <Recipient address="address2@mail.ru"/>
+                    </Cc>
+                </Notification>
+                <Notification templateId="Notify2">
+                    <To>
+                        <Recipient address="address1@mail.ru"/>
+                        <Recipient address="address2@mail.ru"/>
+                    </To>
+                    <Cc>
+                        <Recipient address="address1@mail.ru"/>
+                        <Recipient address="address3@mail.ru"/>
+                    </Cc>
+                </Notification>
+            </Notifications>
+
+        </Transition>
+        <Transition id="ToFinal2" title="To Final2" targetState="Final1">
+            <Notifications>
+                <Notification templateId="Notify3" handler="handlers.NotifyHandler">
+                    <To>
+                        <Recipient role="Role1"/>
+                    </To>
+                    <Cc>
+                        <Recipient role="Role2"/>
+                    </Cc>
+                </Notification>
+            </Notifications>
+        </Transition>
+    </State>
+    <State id="Final1" title="Final1" initial="false"/>
+    <NotifyTemplates>
+        <NotifyTemplate id="Notify1">
+            <Subject><![CDATA[<subject>Notify1</subject>]]></Subject>
+            <Body><![CDATA[<body>Notify1</body>]]></Body>
+        </NotifyTemplate>
+        <NotifyTemplate id="Notify2">
+            <Subject>Notify2 subject</Subject>
+            <Body>Notify2 body</Body>
+        </NotifyTemplate>
+        <NotifyTemplate id="Notify3">
+            <Subject>Notify subject ${Handler}</Subject>
+            <Body>Notify2 body ${Handler}</Body>
+        </NotifyTemplate>
+    </NotifyTemplates>
+</StateChart>

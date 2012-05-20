@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<HConf stateChartDir="conf">
+    <EntityWorkflows>
+        <EntityWorkflowData entityType="obj.Order"
+                            stateChartId="OrderWorkflow1"
+                            initialState="*"
+                            stateMap="State"
+                            workflowFactoryClass="obj.OrderWorkflowFactory"/>
+        <EntityWorkflowData entityType="OrderApproval"
+                            stateChartId="OrderApprovalWorkflow1"
+                            stateMap="ApproveState"/>
+        <EntityWorkflowData entityType="obj.TestEntity"
+                            initialState="Initial2"
+                            stateChartId="StartWorkflowTest"
+                            stateMap="State"
+                            stateChartMap="StateChart"/>
+    </EntityWorkflows>
+</HConf>

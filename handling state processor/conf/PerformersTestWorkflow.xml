@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StateChart id="PerformersTestWorkflow">
+    <State id="State1" title="State1" initial="true" onEnterHandler="" onExitHandler="">
+        <Transition id="T1" title="T1" targetState="State2">
+            <Performers>
+                <Performer role="Role1" />
+            </Performers>
+        </Transition>
+        <Transition id="T2" title="T2" targetState="State2">
+            <Performers>
+                <Performer role="Role2" />
+            </Performers>
+        </Transition>
+    </State>
+    <State id="State2" title="State2" initial="false" onEnterHandler="" onExitHandler="" />
+</StateChart>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<s:warehouse xmlns:s="http://www.dp.com/stock">
+  <s:stock>
+    <s:symbol>PIPE</s:symbol>
+    <s:name>Smoking pipe</s:name>
+    <s:price>10.90</s:price>
+    <s:quantity>10</s:quantity>
+  </s:stock>
+  <s:stock>
+    <s:symbol>VIO</s:symbol>
+    <s:name>Violin</s:name>
+    <s:price>99.99</s:price>
+    <s:quantity>5</s:quantity>
+  </s:stock>
+  <s:stock>
+    <s:name>Hat</s:name>
+    <s:price>9.49</s:price>
+  </s:stock>
+</s:warehouse>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StateChart id="StartWorkflowTest">
+    <State id="Initial1" title="Initial1" initial="true" onEnterHandler="" onExitHandler="">
+        <Transition id="ToFinal1" title="To Final1" targetState="Final1" />
+        <Transition id="ToFinal2" title="To Final2" targetState="Final2" />
+        <Transition id="ToInitial2" title="To Initial2" targetState="Initial2" />
+    </State>
+    <State id="Initial2" title="initial2" initial="true" >
+        <Transition id="ToFinal1" title="To Final1" targetState="Final1" />
+        <Transition id="ToFinal2" title="To Final2" targetState="Final2" />
+    </State>
+    <State id="Final1" title="Final1" initial="false"/>
+    <State id="Final2" title="Final2" initial="false"/>
+</StateChart>

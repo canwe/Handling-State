@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StateChart id="OrderWorkflow1">
+    <State id="Draft" title="Drart" initial="true"
+           onEnterHandler="handlers.StateEnterHandler"
+           onExitHandler="handlers.StateExitHandler">
+        <Description src="filename"></Description>
+        <Transition id="Send" title="Send to processing" targetState="Processing" handler="handlers.ContextHandler">
+            <Description src="filename"></Description>
+        </Transition>
+        <Transition id="Cancel" title="Cancel order" targetState="Canceled" handler="handlers.OrderCancelHandler">
+            <Description src="filename"></Description>
+        </Transition>
+    </State>
+    <State id="Processing" title="Processing" initial="false"
+           onEnterHandler="handlers.StateEnterHandler"
+           onExitHandler="handlers.StateExitHandler">
+        <Transition id="Process" title="Process order" targetState="Archive" >
+            <Description src="filename"></Description>
+        </Transition>
+        <Transition id="Cancel" title="Cancel order" targetState="Canceled">
+            <Description src="filename"></Description>
+        </Transition>
+    </State>
+    <State id="Archive" title="Archive" initial="false" onEnterHandler="" ></State>
+    <State id="Canceled" title="Canceled" initial="false" onEnterHandler="handlers.StateEnterHandler" ></State>
+
+</StateChart>

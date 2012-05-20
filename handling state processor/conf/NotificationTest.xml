@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HConf stateChartDir="conf">
+    <EntityWorkflows>
+        <EntityWorkflowData entityType="obj.TestEntity"
+                            initialState="Initial1"
+                            stateChartId="NotificationWorkflowTest"
+                            stateMap="State"
+                            statechartMap="Statechart"/>
+    </EntityWorkflows>
+</HConf>

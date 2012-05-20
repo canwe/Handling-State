@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<StateChart id="TestStatechart">
+    <State id="One" initial="true" onEnterHandler="OneEnterHandler" onExitHandler="OneExitHandler" title="First State">
+        <Description src="src">description</Description>
+        <Transition handler="T1Handler" id="T1" targetState="Two" title="To Second State">
+            <Description/>
+            <Performers>
+                <Performer role="Role1"/>
+                <Performer role="Role2"/>
+            </Performers>
+        </Transition>
+        <Transition handler="T2Handler" id="T2" targetState="One" title="Roundtrip">
+            <Description/>
+        </Transition>
+    </State>
+    <State id="Two" initial="true" onEnterHandler="OneEnterHandler" onExitHandler="OneExitHandler" title="Second State">
+        <Description src="src">description</Description>
+        <Transition handler="T3Handler" id="T3" targetState="One" title="To First State">
+            <Description/>
+        </Transition>
+        <Transition handler="T2Handler" id="T4" targetState="Two" title="Roundtrip">
+            <Description/>
+        </Transition>
+    </State>
+</StateChart>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<StateChart id="OrderApprovalWorkflow1">
+    <State id="WaitingApprove" title="Waiting Approve" initial="true" onEnterHandler="" onExitHandler="">
+        <Transition id="Approve" title="Approve" targetState="Approved" />
+        <Transition id="Reject" title="Reject" targetState="Rejected" />
+    </State>
+    <State id="Approved" title="Approved" initial="false" />
+    <State id="Rejected" title="Rejected" initial="false"/>
+</StateChart>
