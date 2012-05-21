@@ -43,6 +43,13 @@ public interface IWorkflowAdapter<T> {
     public void setCurrentState(String newState);
 
     /**
+     * Sets current entity state
+     *
+     * @param newState String
+     */
+    public <T extends Enum<T>> void setCurrentState(String newState, Class<T> enumClass);
+
+    /**
      * Sets statechart Id
      *
      * @param stateChartId String

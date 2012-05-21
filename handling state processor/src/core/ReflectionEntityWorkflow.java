@@ -1,12 +1,10 @@
 package core;
 
+import exceptions.NotImplementedException;
 import exceptions.WorkflowException;
 import interfaces.IWorkflowAdapter;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Member;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +12,7 @@ import java.util.List;
 public class ReflectionEntityWorkflow<T> implements IWorkflowAdapter<T> {
 
     private Member _statechartMember;
-    private Member _stateMemeber;
+    private Member _stateMember;
     private String _statechartId;
     private String _entityType;
     private T _entity;
@@ -34,8 +32,8 @@ public class ReflectionEntityWorkflow<T> implements IWorkflowAdapter<T> {
             throw new WorkflowException("Wrong state mapping. Member '{0}.{0}' is not exist.",
                     new Object[]{entity.getClass().getName(), stateMemberName});
         }
-        _stateMemeber = list.get(0);
-        ValidateMemberInfo(_stateMemeber);
+        _stateMember = list.get(0);
+        ValidateMemberInfo(_stateMember);
         _entityType = _entity.getClass().getName();
     }
 
@@ -54,7 +52,7 @@ public class ReflectionEntityWorkflow<T> implements IWorkflowAdapter<T> {
     private void ValidateMemberInfo(Member member)
             throws WorkflowException {
         if (!(member instanceof Field)) {
-            throw new WorkflowException("Wrong state mapping '{0}'. Must be field or property name.", _stateMemeber.getName());
+            throw new WorkflowException("Wrong state mapping '{0}'. Must be field or property name.", _stateMember.getName());
         }
     }
 
@@ -64,9 +62,9 @@ public class ReflectionEntityWorkflow<T> implements IWorkflowAdapter<T> {
     }
 
     public String getCurrentState() {
-        if (_stateMemeber instanceof Field) {
+        if (_stateMember instanceof Field) {
             try {
-                return ((Field) _stateMemeber).get(_entity).toString();
+                return ((Field) _stateMember).get(_entity).toString();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
                 return null;
@@ -77,14 +75,46 @@ public class ReflectionEntityWorkflow<T> implements IWorkflowAdapter<T> {
     }
 
     public void setCurrentState(String state) {
-        if (_stateMemeber instanceof Field) {
-            Field field = (Field) _stateMemeber;
+        if (_stateMember instanceof Field) {
+            Field field = (Field) _stateMember;
             try {
-                if (field.isEnumConstant()) {
-                    //TODO field.set(_entity, Enum.valueOf(field.getType(), state));
+                if (field.isEnumConstant() || field.getType().isEnum()) {
+                    //Class<? extends Enum<?>> cls = (Class<? extends Enum<?>>) field.getType();
+                    //field.set(_entity, Enum.valueOf(cls, state));
+                    throw new NotImplementedException();
                 } else {
                     //field.set(_entity, Convert.ChangeType(state, field.getType()));
-                    field.set(_entity, state.getClass().asSubclass(field.getType()).cast(state));
+                    try {
+                        Constructor<?> constructor = field.getType().getConstructor(String.class);
+                        if (null != constructor) {
+                            field.set(_entity, constructor.newInstance(state));
+                        }
+                        return;
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                    //field.set(_entity, state.getClass().asSubclass(field.getType()).cast(state));
+                    field.set(_entity, null);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public <T extends Enum<T>> void setCurrentState(String state, Class<T> enumClass) {
+        if (_stateMember instanceof Field) {
+            Field field = (Field) _stateMember;
+            try {
+                if (field.isEnumConstant() || field.getType().isEnum()) {
+                    field.set(_entity, Enum.valueOf(enumClass, state));
+                } else {
+                    throw new NotImplementedException();
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

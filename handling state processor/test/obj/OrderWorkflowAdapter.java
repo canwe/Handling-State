@@ -1,5 +1,6 @@
 package obj;
 
+import exceptions.NotImplementedException;
 import interfaces.IWorkflowAdapter;
 
 public class OrderWorkflowAdapter implements IWorkflowAdapter<Order> {
@@ -30,6 +31,11 @@ public class OrderWorkflowAdapter implements IWorkflowAdapter<Order> {
 
     public void setCurrentState(String newState) {
         entity.State = (OrderState.valueOf(newState));
+    }
+
+    @Override
+    public <T extends Enum<T>> void setCurrentState(String newState, Class<T> enumClass) {
+        throw new NotImplementedException();
     }
 
     public void setStateChartId(String stateChartId) {

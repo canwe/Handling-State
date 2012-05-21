@@ -38,7 +38,7 @@ public class EntityWorkflow {
     /// <param name="statechartMap">The name of entity attribute (field or property) that stores statechart Id</param>
     public void setStatechartMap(String stateChartMap) {
         if (null == stateChartMap || stateChartMap.isEmpty()) {
-            throw new IllegalArgumentException("statechartMap");
+            throw new IllegalArgumentException("stateChartMap");
         }
         _data.setStateChartMap(stateChartMap);
     }
@@ -73,7 +73,7 @@ public class EntityWorkflow {
         if (null == stateId || stateId.isEmpty()) {
             throw new IllegalArgumentException("InitialState");
         }
-        _data.setInitialState(getInitialState());
+        _data.setInitialState(stateId);
     }
 
     /// <summary>
